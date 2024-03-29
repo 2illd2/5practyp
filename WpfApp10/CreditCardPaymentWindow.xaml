@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfApp10.CreditCardPaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp10"
+        mc:Ignorable="d"
+        Title="CreditCardPaymentWindow" Height="500" Width="400">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+            BorderBrush="{TemplateBinding BorderBrush}" 
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="1" Source="Resources/IMG_9999.png" HorizontalAlignment="Left" Margin="0,-13,0,27" Width="128"/>
+        <Image Grid.Row="1" Source="Resources/IMG_9999.png" HorizontalAlignment="Left"  RenderTransformOrigin="0.5,0.5" Width="119" Margin="281,-26,0,25">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="HADJABUDJA" Foreground="Red" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,10,0,0"/>
+        <TextBlock Text="Ваш заказ уже в шаге от вас" Foreground="Red" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="12" FontWeight="Bold" Margin="10,10,10,10"/>
+
+        <StackPanel Grid.Row="2">
+            <Label Content="Номер карты:"  Width="200" HorizontalAlignment="Center"/>
+            <TextBox Name="CardNumberTextBox" TextChanged="CardNumberTextBox_TextChanged"  Width="200" HorizontalAlignment="Center" BorderBrush="Red" BorderThickness="1"/>
+
+            <Label  Content="Expiry Date (MM/YY):"  Width="200" HorizontalAlignment="Center"/>
+            <TextBox  Name="ExpiryDateTextBox" PreviewTextInput="ExpiryDateTextBox_PreviewTextInput" Width="200" HorizontalAlignment="Center" BorderBrush="Red" BorderThickness="1"/>
+
+            <Label  Content="CVV:"  Width="200" HorizontalAlignment="Center"/>
+            <TextBox  Name="CVVTextBox" PreviewTextInput="CVVTextBox_PreviewTextInput"  Width="200" HorizontalAlignment="Center" BorderBrush="Red" BorderThickness="1"/>
+        </StackPanel>
+        <Button Grid.Row="3" Content="Oплатить" Width="100" HorizontalAlignment="Center" Click="Pay_Click"/>
+        <Button Content="Назад" Click="Back_Click" Grid.Column="1" Grid.Row="3"  Width="80" Height="20" HorizontalAlignment="Right" Background="Red" Foreground="White" FontWeight="Bold"  VerticalAlignment="Bottom" />
+
+    </Grid>
+</Window>

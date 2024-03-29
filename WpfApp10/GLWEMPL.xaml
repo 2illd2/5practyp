@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfApp10.GLWEMPL"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp10"
+        mc:Ignorable="d"
+        Title="GLWEMPL" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="CustomersOrders" Click="OpenCustomersOrdersWindow"/>
+            <Button Content="Orders" Click="OpenOrdersWindow"/>
+            <Button Content="Receipts" Click="OpenReceiptsWindow"/>
+            <Button Content="Products" Click="OpenProductsWindow"/>
+            <Button Content="Categories" Click="OpenCategoriesWindow"/>
+            <Button Content="ProductOrders" Click="OpenProductOrdersWindow"/>
+            <Button Content="ShippingAddresses" Click="OpenShippingAddressesWindow"/>
+            <Button Content="Payments" Click="OpenPaymentsWindow"/>
+            <Button Content="Reviews" Click="OpenReviewsWindow"/>
+            <Button Content="Employees" Click="OpenEmployeesWindow"/>
+            <Button Content="EmployeeOrders" Click="OpenEmployeeOrdersWindow"/>
+            <Button Content="Ingredients" Click="OpenIngredientsWindow"/>
+            <Button Content="ProductIngredients" Click="OpenProductIngredientsWindow"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,87 @@
+﻿<Window x:Class="WpfApp10.CustomerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp10"
+        mc:Ignorable="d"
+        Title="Продукты" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <!-- Стиль для кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                     BorderBrush="{TemplateBinding BorderBrush}" 
+                     BorderThickness="{TemplateBinding BorderThickness}" 
+                     CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Стиль для текстовых блоков -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <!-- Стиль для DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid для отображения списка продуктов -->
+        <DataGrid x:Name="productsDataGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <!-- Определяем стили столбцов -->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding NameProduct}" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding DescriptionProduct}" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Добавить в заказ" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="addToOrderButton_Click"/>
+        <DataGrid x:Name="orderItemsDataGrid" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" />
+                <DataGridTemplateColumn Header="Количество">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
+                                <Button Content="▲" Width="20" Margin="5,0" Click="IncreaseQuantity_Click"/>
+                                <Button Content="▼" Width="20" Margin="5,0" Click="DecreaseQuantity_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Оплатить заказ" Grid.Row="3" HorizontalAlignment="Left" Click="PayOrderButton_Click"/>
+        <TextBlock x:Name="TotalPriceTextBlock" Text="{Binding Path=TotalPrice, StringFormat='Итоговая цена: {0:C2}'}" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="200" Height="20" Margin="5,0,10,10"/>
+        <Button Content="Назад" Click="Back_Click" Grid.Column="1" Grid.Row="3"  Width="200" Height="20" HorizontalAlignment="Right" Background="Red" Foreground="White" FontWeight="Bold"  VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

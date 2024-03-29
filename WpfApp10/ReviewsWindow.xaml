@@ -1,0 +1,64 @@
+﻿<Window x:Class="WpfApp10.ReviewsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ReviewsWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="Background" Value="#FF31C8F9"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="ReviewsGrid" AutoGenerateColumns="False" Grid.Row="0" Grid.RowSpan="4">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ProductID}" Header="Product ID"/>
+                <DataGridTextColumn Binding="{Binding CustomerID}" Header="Customer ID"/>
+                <DataGridTextColumn Binding="{Binding Rating}" Header="Rating"/>
+                <DataGridTextColumn Binding="{Binding ReviewText}" Header="Review Text"/>
+                <DataGridTextColumn Binding="{Binding ReviewDate}" Header="Review Date"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add" Click="AddButton_Click" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" />
+        <Button Content="Update" Click="UpdateButton_Click" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Center"   />
+        <Button Content="Delete" Click="DeleteButton_Click" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Width="100" HorizontalAlignment="Right"  />
+        <ComboBox x:Name="ProductIDComboBox" Grid.Row="1" Grid.Column="1" Width="200" Height="30" Background="#3389B498" HorizontalAlignment="Left"/>
+        <ComboBox x:Name="CustomerIDComboBox" Grid.Row="1" Grid.Column="1" Width="200" Height="30" Background="#3389B498" HorizontalAlignment="Right"/>
+        <TextBox x:Name="RatingTextBox" Grid.Row="2" Grid.Column="1" Width="200" Height="30" Background="#3389B498" HorizontalAlignment="Left"/>
+        <TextBox x:Name="ReviewTextBox" Grid.Row="2" Grid.Column="1" Width="200" Height="30" Background="#3389B498" HorizontalAlignment="Right"/>
+        <DatePicker x:Name="ReviewDateTextBox" Grid.Row="3" Grid.Column="1" Width="200" Height="30" Background="#3389B498" HorizontalAlignment="Center" />
+        <TextBlock Text="Product ID:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Text="Customer ID:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <TextBlock Text="Rating:" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Text="Review Text:" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <TextBlock Text="Review Date:" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Button Content="Back" Click="Back_Click" Grid.Column="1" Grid.Row="3"  Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>
